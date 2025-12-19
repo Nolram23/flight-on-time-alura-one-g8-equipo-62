@@ -7,7 +7,7 @@ MVP para predecir los atrasos de vuelos (Hackathon)
 This project follows a simple and clear commit message convention.
 
 ### Format
-<type>: <short description>;
+```<type>: <short description>```
 
 ### Allowed Types (no more, no less)
 
