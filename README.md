@@ -2,32 +2,56 @@
 MVP para predecir los atrasos de vuelos (Hackathon)
 
 
-## Commit Convention
+## Contributing
 
-This project follows a simple and clear commit message convention.
+### Access & Workflow
+This repository uses a Pull Request workflow.
 
-### Format
-```<type>: <short description>```
+- Work on a **feature branch** (do not push directly to `main`).
+- Open a **Pull Request (PR)** to merge changes into `main`.
+- PRs should be small and focused when possible.
 
-### Allowed Types (no more, no less)
+### Branch naming
+Use this format:
 
-| Type  | Usage                          |
-|-------|--------------------------------|
-| feat  | New functionality              |
-| fix   | Bug fix                        |
-| docs  | Documentation changes          |
-| chore | Project setup, config, cleanup |
-| model | Data Science model changes     |
-| test  | Tests                          |
+`<area>/<type>-<short-description>`
 
-### Examples
-chore: init project structure
-docs: add integration contract
-feat: add predict endpoint
-model: train baseline model
-fix: validate input fields
-test: add predict endpoint tests
+**Areas**
+- `fe` = Frontend
+- `be` = Backend
+- `ds` = Data Science / ML
+- `docs` = Documentation
+- `ops` = DevOps / CI
 
-- 📋 Project management:
+**Types**
+- `feat` = New feature
+- `fix` = Bug fix
+- `chore` = Maintenance / config / cleanup
+- `test` = Tests
+- `model` = Model / data pipeline changes
+
+**Examples**
+- `be/feat-api-predict-delay`
+- `ds/model-train-baseline`
+- `fe/feat-dashboard`
+- `docs/chore-update-readme`
+
+### Commits
+Follow this convention:
+
+`<type>: <short description>`
+
+Allowed types:
+- `feat`, `fix`, `docs`, `chore`, `model`, `test`
+
+**Examples**
+- `feat: add delay prediction endpoint`
+- `model: train baseline model with new features`
+
+### Merging
+We use **Squash and merge** to keep `main` clean and readable.
+
+
+## - 📋 Project management:
 **Trello Board:**
   https://trello.com/b/GAmLaRHh/proyecto-3-flightontime-%E2%9C%88%EF%B8%8F-prediccion-de-retrasos-de-vuelos
