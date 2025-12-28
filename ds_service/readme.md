@@ -34,27 +34,50 @@ Ejemplo de salida (JSON)
 
 2. Abrir otra terminal y usar PowerShell:
     
-$flight = @{
-    airline = "AZ"
-    origin = "GIG"
-    destination = "GRU"
-    departure_time = "2025-11-10T14:30:00"
-    distance_miles = 350
-} | ConvertTo-Json
+* Ejemplo 1 — Request JSON (un vuelo)
+{
+  "airline": "AZ",
+  "origin": "GIG",
+  "destination": "GRU",
+  "distance_miles": 350,
+  "departure_time": "2025-11-10T14:30:00"
+}
 
-Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method Post -Body $flight -ContentType "application/json"
+* Ejemplo 2 — Vuelo nocturno (más probabilidad de atraso)
 
-3. Para probar varios vuelos:
+{
+  "airline": "AA",
+  "origin": "JFK",
+  "destination": "LAX",
+  "distance_miles": 2475,
+  "departure_time": "2025-11-11T23:45:00"
+}
+
+* Ejemplo 3 — Vuelo temprano y corto
+
+{
+  "airline": "LA",
+  "origin": "SCL",
+  "destination": "LIM",
+  "distance_miles": 1530,
+  "departure_time": "2025-11-12T06:10:00"
+}
+
+
+* Ejemplo 4 — PowerShell (varios vuelos)
 
 $vuelos = @(
-    @{ airline = "AZ"; origin = "GIG"; destination = "GRU"; departure_time = "2025-11-10T14:30:00"; distance_miles = 350 },
-    @{ airline = "AZ"; origin = "GRU"; destination = "GIG"; departure_time = "2025-11-11T09:15:00"; distance_miles = 350 }
-    )
+    @{ airline="AZ"; origin="GIG"; destination="GRU"; distance_miles=350; departure_time="2025-11-10T14:30:00" },
+    @{ airline="AA"; origin="JFK"; destination="LAX"; distance_miles=2475; departure_time="2025-11-11T23:45:00" }
+)
 
 foreach ($vuelo in $vuelos) {
     $body = $vuelo | ConvertTo-Json
-    $result = Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method Post -Body $body -ContentType "application/json"
-    Write-Host "Flight $($vuelo.departure_time): prediction = $($result.prediction), probability = $($result.probability)"
+    Invoke-RestMethod `
+        -Uri http://127.0.0.1:8000/predict `
+        -Method Post `
+        -Body $body `
+        -ContentType "application/json"
 }
 
 
